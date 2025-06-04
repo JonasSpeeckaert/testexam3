@@ -7,16 +7,20 @@ jobs:
   npm_install:
     name: getting the OS
     runs-on: ubuntu-latest
+    
     steps:
-      - name: setup NPM
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: checkout 
+        uses: actions/checkout@v4
+        
+      - name: setup npm
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
-      - run: npm ci
-      
+      - name: npm dependencies     
+        run: npm ci
+        
       - name: Upload coverage reports to Codecov
-      - uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
